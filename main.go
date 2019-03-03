@@ -29,7 +29,7 @@ func main() {
 			break
 		}
 
-		data.WriteString(fmt.Sprintf("%s %s\n", obj.FirstName, obj.LastName))
+		data.WriteString(fmt.Sprintf("%s:%s:1000:1000:jun:/home/jun:/bin/bash\n", obj.FirstName, "x"))
 	}
 
 	//fmt.Printf("%s\n", data.String())
