@@ -13,14 +13,21 @@ type SomeStruct struct {
 }
 
 func main() {
-	a := SomeStruct{}
+	l := 100
+	data := make([]SomeStruct, l)
+	obj := SomeStruct{}
+	var err error
 
-	err := faker.FakeData(&a)
+	for i := 0; i < l; i++ {
+		err = faker.FakeData(&obj)
 
-	if err != nil {
-		fmt.Println(err)
-		return
+		if err != nil {
+			fmt.Printf("Error: %s\n", err.Error())
+			break
+		}
+
+		data = append(data, obj)
 	}
 
-	fmt.Printf("%#v", a)
+	fmt.Printf("%#v", data)
 }
