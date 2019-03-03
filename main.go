@@ -2,7 +2,10 @@ package main
 
 import (
 	"fmt"
-
+	"io/ioutil"
+	"strings"
+)
+import (
 	"github.com/bxcodec/faker"
 )
 
@@ -13,10 +16,10 @@ type SomeStruct struct {
 }
 
 func main() {
-	l := 100
-	data := make([]SomeStruct, l)
+	l := 100000
 	obj := SomeStruct{}
 	var err error
+	var data strings.Builder
 
 	for i := 0; i < l; i++ {
 		err = faker.FakeData(&obj)
@@ -26,8 +29,13 @@ func main() {
 			break
 		}
 
-		data = append(data, obj)
+		data.WriteString(fmt.Sprintf("%s %s\n", obj.FirstName, obj.LastName))
 	}
 
-	fmt.Printf("%#v", data)
+	//fmt.Printf("%s\n", data.String())
+
+	if err = ioutil.WriteFile("data.txt", []byte(data.String()), 0640); err != nil {
+		fmt.Printf("Error: %s\n", err.Error())
+		return
+	}
 }
