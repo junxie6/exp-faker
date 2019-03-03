@@ -16,7 +16,7 @@ type SomeStruct struct {
 }
 
 func main() {
-	l := 10000000
+	l := 1000
 	obj := SomeStruct{}
 	var err error
 	var data strings.Builder
